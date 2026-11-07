@@ -17,16 +17,22 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: var(--panel); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo { font-size: 20px; font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .lang-container { display: flex; gap: 10px; align-items: center; }
-        .lang-btn { background: var(--panel2); color: var(--text); border: 1px solid var(--blue); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .lang-btn:hover { background: var(--blue); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: var(--panel); border-bottom: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 15px; }
+        .logo { font-size: 20px; font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; cursor: pointer; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-btn { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; text-decoration: none; transition: 0.3s; font-size: 14px; }
+        .nav-btn:hover { border-color: var(--blue); color: var(--cyan); }
+        .nav-btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+        .nav-btn.primary:hover { background: #236ce4; }
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
         .card { background: var(--panel); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .hidden { display: none !important; }
         h1 { font-size: 32px; margin-bottom: 15px; color: #fff; }
         p { color: #94a3b8; line-height: 1.6; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #94a3b8; }
+        .form-group input { width: 100%; padding: 12px 16px; background: var(--panel2); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 15px; }
+        .form-group input:focus { outline: none; border-color: var(--blue); }
         .cert-details { background: var(--panel2); padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 4px solid var(--success); }
         .cert-details h3 { color: var(--success); margin-bottom: 15px; font-size: 22px; }
         .cert-info { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; font-size: 15px; }
@@ -38,14 +44,16 @@
 <body>
 
     <header>
-        <div class="logo">Munich Net Academy</div>
-        <div class="lang-container">
-            <button class="lang-btn" onclick="toggleLanguage()" id="langToggle1">Deutsch (DE)</button>
+        <a href="#" onclick="changeRoute('')" class="logo">Munich Net Academy</a>
+        <div class="nav-links">
+            <button class="nav-btn" onclick="changeRoute('signin')" id="navSignIn">Sign In</button>
+            <button class="nav-btn primary" onclick="changeRoute('signup')" id="navSignUp">Sign Up</button>
+            <button class="nav-btn" onclick="toggleLanguage()" id="langToggle">Deutsch (DE)</button>
         </div>
     </header>
 
     <div class="container">
-        <!-- Main Home View -->
+        <!-- 1. Main Home View -->
         <div id="homeView" class="card">
             <h1 id="homeTitle">Welcome to Munich Net Academy</h1>
             <p id="homeDesc">Your trusted platform for professional network engineering certifications and accredited training courses.</p>
@@ -54,7 +62,41 @@
             </div>
         </div>
 
-        <!-- Secret Verification View (#verify-cert) -->
+        <!-- 2. Sign In View (#signin) -->
+        <div id="signinView" class="card hidden">
+            <h1 id="signInTitle">Sign In to Your Account</h1>
+            <p id="signInDesc">Access your student portal, certificates, and course materials.</p>
+            <div class="form-group">
+                <label id="labelEmail">Email Address</label>
+                <input type="email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label id="labelPass">Password</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <button class="nav-btn primary" style="width: 100%; padding: 12px; font-size: 16px;" id="btnLogin">Sign In</button>
+        </div>
+
+        <!-- 3. Sign Up View (#signup) -->
+        <div id="signupView" class="card hidden">
+            <h1 id="signUpTitle">Create New Account</h1>
+            <p id="signUpDesc">Register with Munich Net Academy to start tracking your professional certifications.</p>
+            <div class="form-group">
+                <label id="labelNameReg">Full Name</label>
+                <input type="text" placeholder="Muhamed Amr">
+            </div>
+            <div class="form-group">
+                <label id="labelEmailReg">Email Address</label>
+                <input type="email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label id="labelPassReg">Password</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <button class="nav-btn primary" style="width: 100%; padding: 12px; font-size: 16px;" id="btnRegister">Register</button>
+        </div>
+
+        <!-- 4. Secret Verification View (#verify-cert) -->
         <div id="verifyView" class="card hidden">
             <h1 id="verifyTitle">Official Certificate Verification</h1>
             <p id="verifyDesc">This page officially verifies the academic credentials and professional course completion.</p>
@@ -92,9 +134,22 @@
         const langData = {
             en: {
                 langBtn: "Deutsch (DE)",
+                navSignIn: "Sign In",
+                navSignUp: "Sign Up",
                 homeTitle: "Welcome to Munich Net Academy",
                 homeDesc: "Your trusted platform for professional network engineering certifications and accredited training courses.",
                 homeBadge: "Accredited Institution",
+                signInTitle: "Sign In to Your Account",
+                signInDesc: "Access your student portal, certificates, and course materials.",
+                labelEmail: "Email Address",
+                labelPass: "Password",
+                btnLogin: "Sign In",
+                signUpTitle: "Create New Account",
+                signUpDesc: "Register with Munich Net Academy to start tracking your professional certifications.",
+                labelNameReg: "Full Name",
+                labelEmailReg: "Email Address",
+                labelPassReg: "Password",
+                btnRegister: "Register",
                 verifyTitle: "Official Certificate Verification",
                 verifyDesc: "This page officially verifies the academic credentials and professional course completion.",
                 labelId: "Student ID / Reference",
@@ -105,9 +160,22 @@
             },
             de: {
                 langBtn: "English (EN)",
+                navSignIn: "Anmelden",
+                navSignUp: "Registrieren",
                 homeTitle: "Willkommen an der Munich Net Academy",
                 homeDesc: "Ihre vertrauenswürdige Plattform für professionelle Netzwerk-Zertifizierungen und akkreditierte Kurse.",
                 homeBadge: "Akkreditierte Institution",
+                signInTitle: "In Ihr Konto einloggen",
+                signInDesc: "Greifen Sie auf Ihr Studentenportal, Zertifikate und Kursmaterialien zu.",
+                labelEmail: "E-Mail-Adresse",
+                labelPass: "Passwort",
+                btnLogin: "Anmelden",
+                signUpTitle: "Neues Konto erstellen",
+                signUpDesc: "Registrieren Sie sich bei der Munich Net Academy, um Ihre Zertifizierungen zu verfolgen.",
+                labelNameReg: "Vollständiger Name",
+                labelEmailReg: "E-Mail-Adresse",
+                labelPassReg: "Passwort",
+                btnRegister: "Registrieren",
                 verifyTitle: "Offizielle Zertifikatsprüfung",
                 verifyDesc: "Diese Seite verifiziert offiziell die akademischen Qualifikationen und den Kursabschluss.",
                 labelId: "Studenten-ID / Referenz",
@@ -127,10 +195,23 @@
 
         function updateContent() {
             const data = langData[currentLang];
-            document.getElementById('langToggle1').innerText = data.langBtn;
+            document.getElementById('langToggle').innerText = data.langBtn;
+            document.getElementById('navSignIn').innerText = data.navSignIn;
+            document.getElementById('navSignUp').innerText = data.navSignUp;
             document.getElementById('homeTitle').innerText = data.homeTitle;
             document.getElementById('homeDesc').innerText = data.homeDesc;
             document.getElementById('homeBadge').innerText = data.homeBadge;
+            document.getElementById('signInTitle').innerText = data.signInTitle;
+            document.getElementById('signInDesc').innerText = data.signInDesc;
+            document.getElementById('labelEmail').innerText = data.labelEmail;
+            document.getElementById('labelPass').innerText = data.labelPass;
+            document.getElementById('btnLogin').innerText = data.btnLogin;
+            document.getElementById('signUpTitle').innerText = data.signUpTitle;
+            document.getElementById('signUpDesc').innerText = data.signUpDesc;
+            document.getElementById('labelNameReg').innerText = data.labelNameReg;
+            document.getElementById('labelEmailReg').innerText = data.labelEmailReg;
+            document.getElementById('labelPassReg').innerText = data.labelPassReg;
+            document.getElementById('btnRegister').innerText = data.btnRegister;
             document.getElementById('verifyTitle').innerText = data.verifyTitle;
             document.getElementById('verifyDesc').innerText = data.verifyDesc;
             document.getElementById('labelId').innerText = data.labelId;
@@ -140,12 +221,25 @@
             document.getElementById('verifiedBadge').innerText = data.verifiedBadge;
         }
 
+        function changeRoute(route) {
+            window.location.hash = route ? '#' + route : '';
+            checkRoute();
+        }
+
         function checkRoute() {
-            if (window.location.hash === '#verify-cert') {
-                document.getElementById('homeView').classList.add('hidden');
+            const hash = window.location.hash;
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('signinView').classList.add('hidden');
+            document.getElementById('signupView').classList.add('hidden');
+            document.getElementById('verifyView').classList.add('hidden');
+
+            if (hash === '#signin') {
+                document.getElementById('signinView').classList.remove('hidden');
+            } else if (hash === '#signup') {
+                document.getElementById('signupView').classList.remove('hidden');
+            } else if (hash === '#verify-cert') {
                 document.getElementById('verifyView').classList.remove('hidden');
             } else {
-                document.getElementById('verifyView').classList.add('hidden');
                 document.getElementById('homeView').classList.remove('hidden');
             }
         }
