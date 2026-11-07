@@ -1,786 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080e1b">
-<title>Munich Net Academy | MNA</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-:root {
-  --bg: #080e1b;
-  --panel: #101a2b;
-  --panel2: #142239;
-  --blue: #3185ff;
-  --cyan: #35d5ed;
-  --text: #f2f6ff;
-  --muted: #91a1b9;
-  --border: rgba(255,255,255,.09);
-  --green: #25d995;
-  --red: #ff4d4d;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-a { text-decoration: none; color: inherit; }
-
-.container {
-  width: min(1120px, 90%);
-  margin: auto;
-}
-
-/* HEADER */
-header {
-  height: 78px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8,14,27,.95);
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  backdrop-filter: blur(15px);
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.logo {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: -.5px;
-}
-
-.logo-icon {
-  width: 39px;
-  height: 39px;
-  background: linear-gradient(135deg,var(--blue),var(--cyan));
-  color: white;
-  display: grid;
-  place-items: center;
-  border-radius: 11px;
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.logo span small {
-  display: block;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2px;
-  font-weight: 600;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.nav-links a:hover { color: var(--cyan); }
-
-.nav-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  padding: 10px 19px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .25s;
-  font-family: inherit;
-}
-
-.btn-outline {
-  color: white;
-  background: transparent;
-}
-
-.btn-outline:hover {
-  border-color: var(--blue);
-  color: var(--cyan);
-}
-
-.btn-primary {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #1769e5;
-  transform: translateY(-2px);
-}
-
-/* HERO */
-.hero {
-  min-height: 580px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 80% 40%,rgba(30,104,220,.19),transparent 40%),
-    radial-gradient(ellipse at 15% 70%,rgba(28,188,225,.08),transparent 40%);
-}
-
-.hero-content {
-  max-width: 720px;
-  padding: 90px 0;
-  position: relative;
-  z-index: 2;
-}
-
-.eyebrow {
-  color: var(--cyan);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 23px;
-}
-
-.hero h1 {
-  font-size: clamp(38px,6vw,67px);
-  line-height: 1.12;
-  letter-spacing: -2.5px;
-  margin-bottom: 24px;
-}
-
-.hero h1 span {
-  background: linear-gradient(90deg,#398aff,#42d7eb);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  color: var(--muted);
-  max-width: 590px;
-  font-size: 16px;
-  line-height: 1.9;
-  margin-bottom: 30px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 13px;
-  flex-wrap: wrap;
-}
-
-.hero-buttons .btn { padding: 14px 24px; }
-
-.hero-bottom {
-  display: flex;
-  gap: 38px;
-  margin-top: 55px;
-  flex-wrap: wrap;
-}
-
-.hero-stat strong {
-  display: block;
-  font-size: 21px;
-}
-
-.hero-stat small { color: var(--muted); }
-
-/* SECTION */
-section { padding: 80px 0; }
-
-.section-heading { margin-bottom: 40px; }
-.section-heading .eyebrow { margin-bottom: 12px; }
-.section-heading h2 { font-size: clamp(27px,4vw,38px); letter-spacing: -1px; }
-.section-heading p { color: var(--muted); margin-top: 10px; font-size: 14px; }
-
-/* COURSES */
-.courses { background: #0b1423; }
-
-.course-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 22px;
-}
-
-.course-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  padding: 28px;
-  border-radius: 13px;
-  transition: .3s;
-}
-
-.course-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(49,133,255,.6);
-  background: var(--panel2);
-}
-
-.course-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(49,133,255,.14);
-  color: var(--cyan);
-  display: grid;
-  place-items: center;
-  font-size: 23px;
-  margin-bottom: 24px;
-}
-
-.course-card h3 { font-size: 18px; line-height: 1.5; margin-bottom: 13px; }
-.course-card p { color: var(--muted); font-size: 13px; min-height: 80px; }
-
-.course-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 23px;
-  padding-top: 17px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hours { color: var(--cyan); font-size: 13px; font-weight: 700; }
-
-/* ABOUT & CONTACT FOOTER */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-
-.about-text p { color: var(--muted); font-size: 14px; margin-top: 20px; line-height: 2; }
-
-.about-box {
-  background: linear-gradient(140deg,#122744,#0d182a);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 35px;
-}
-
-.about-box h3 { margin-bottom: 20px; }
-
-.feature {
-  display: flex;
-  gap: 13px;
-  margin: 18px 0;
-  color: #c5d2e6;
-  font-size: 14px;
-}
-
-.feature span { color: var(--cyan); }
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 45px 0;
-  color: var(--muted);
-  font-size: 13px;
-  background: #060a14;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 30px;
-  margin-bottom: 30px;
-}
-
-.footer-col h4 { color: white; margin-bottom: 12px; font-size: 15px; }
-.footer-col p { line-height: 1.8; font-size: 13px; }
-
-.footer-bottom {
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-/* MODALS */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.8);
-  backdrop-filter: blur(7px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 100;
-}
-
-.modal-overlay.active { display: flex; }
-
-.modal {
-  width: 100%;
-  max-width: 420px;
-  background: #111d30;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 35px;
-  animation: popup .25s ease;
-}
-
-@keyframes popup {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.modal h3 { margin-bottom: 15px; font-size: 20px; }
-.modal p { color: var(--muted); font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
-
-.form-group { margin-bottom: 15px; text-align: left; }
-.form-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-.form-group input {
-  width: 100%;
-  padding: 11px 14px;
-  background: #080e1b;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: white;
-  font-family: inherit;
-  font-size: 14px;
-}
-.form-group input:focus { outline: none; border-color: var(--blue); }
-
-.modal-error {
-  color: var(--red);
-  font-size: 12px;
-  margin-bottom: 15px;
-  display: none;
-}
-
-/* CERTIFICATE DEMO */
-#verificationPage {
-  display: none;
-  min-height: 100vh;
-  background: radial-gradient(ellipse at top right,rgba(33,119,210,.14),transparent 45%), var(--bg);
-}
-
-.verify-container {
-  width: min(850px,92%);
-  margin: auto;
-  padding: 65px 0;
-}
-
-.verify-header {
-  text-align: center;
-  padding: 30px 0 40px;
-  border-bottom: 1px solid var(--border);
-}
-
-.verify-logo { margin: 0 auto 20px; }
-.verify-header h1 { font-size: clamp(22px,4vw,32px); letter-spacing: -.7px; }
-.verify-header p { color: var(--muted); font-size: 13px; margin-top: 8px; }
-
-.verify-card {
-  background: linear-gradient(145deg,#122039,#0d1728);
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  padding: 35px;
-  margin-top: 30px;
-}
-
-.verify-status { text-align: center; margin-bottom: 30px; }
-.status-label { display: block; font-size: 10px; letter-spacing: 3px; color: var(--muted); margin-bottom: 8px; }
-
-.certified {
-  display: inline-block;
-  color: var(--green);
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  border: 1px solid rgba(37,217,149,.35);
-  padding: 8px 23px;
-  border-radius: 50px;
-  background: rgba(37,217,149,.09);
-}
-
-.certified::before { content: "●"; font-size: 11px; margin-right: 10px; vertical-align: 3px; }
-
-.student-title { font-size: 13px; color: var(--cyan); letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
-
-.details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.detail-item {
-  padding: 16px;
-  border-radius: 9px;
-  background: rgba(255,255,255,.035);
-  border: 1px solid var(--border);
-  min-width: 0;
-}
-
-.detail-item.full { grid-column: 1/-1; }
-.detail-item small { display: block; color: var(--muted); font-size: 11px; margin-bottom: 6px; }
-.detail-item strong { font-size: 14px; overflow-wrap: anywhere; }
-.grade { color: var(--green); font-weight: 700; }
-
-.course-record-box {
-  background: rgba(49,133,255,.05);
-  border: 1px solid rgba(49,133,255,.2);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 15px;
-}
-
-.course-record-box h4 {
-  color: var(--cyan);
-  font-size: 15px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.official-badge-box {
-  margin-top: 25px;
-  padding: 15px;
-  background: rgba(37,217,149,.08);
-  border: 1px solid rgba(37,217,149,.3);
-  border-radius: 10px;
-  text-align: center;
-  color: var(--green);
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.verify-actions { display: flex; justify-content: center; margin-top: 30px; }
-
-.back-btn {
-  background: transparent;
-  color: #b8c9df;
-  border: 1px solid var(--border);
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: inherit;
-}
-.back-btn:hover { border-color: var(--blue); color: white; }
-
-/* RESPONSIVE */
-@media(max-width:850px) {
-  .nav-links { display: none; }
-  .course-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
-  .details-grid { grid-template-columns: 1fr; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munich Net Academy | Professional Network Certification</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        :root {
+            --bg: #0b0e1b;
+            --panel: #131a2b;
+            --panel2: #1a2239;
+            --blue: #3185ff;
+            --cyan: #35d5ed;
+            --text: #f2f6ff;
+            --success: #22c55e;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: var(--panel); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-size: 20px; font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .lang-container { display: flex; gap: 10px; align-items: center; }
+        .lang-btn { background: var(--panel2); color: var(--text); border: 1px solid var(--blue); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .lang-btn:hover { background: var(--blue); }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
+        .card { background: var(--panel); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .hidden { display: none !important; }
+        h1 { font-size: 32px; margin-bottom: 15px; color: #fff; }
+        p { color: #94a3b8; line-height: 1.6; margin-bottom: 25px; }
+        .cert-details { background: var(--panel2); padding: 25px; border-radius: 12px; margin-top: 20px; border-left: 4px solid var(--success); }
+        .cert-details h3 { color: var(--success); margin-bottom: 15px; font-size: 22px; }
+        .cert-info { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; font-size: 15px; }
+        .cert-info div span { color: #94a3b8; display: block; font-size: 13px; margin-bottom: 3px; }
+        .badge { display: inline-block; background: rgba(34, 197, 94, 0.1); color: var(--success); padding: 6px 14px; border-radius: 20px; font-weight: 700; margin-top: 15px; }
+        footer { text-align: center; padding: 20px; color: #64748b; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
 </head>
-
 <body>
 
-<!-- PUBLIC HOMEPAGE -->
-<div id="homePage">
-
-<header>
-  <div class="container nav">
-    <a href="#" class="logo">
-      <div class="logo-icon">M</div>
-      <span>Munich Net Academy<small>MNA · GERMANY</small></span>
-    </a>
-
-    <nav class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#courses">Courses</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <button class="btn btn-outline" onclick="openSignInModal()">Sign In</button>
-      <button class="btn btn-primary" onclick="openSignUpModal()">Sign Up</button>
-    </div>
-  </div>
-</header>
-
-<main>
-<section class="hero" id="home">
-  <div class="container">
-    <div class="hero-content">
-      <div class="eyebrow">● NETWORKING · SYSTEMS · ENGINEERING</div>
-      <h1>Building the Next Generation of <span>Network Engineers.</span></h1>
-      <p>Munich Net Academy is a technology-focused training platform dedicated to computer networking, Cisco CCNA, MCSA, and systems engineering in Germany.</p>
-      
-      <div class="hero-buttons">
-        <a href="#courses" class="btn btn-primary">Explore Courses →</a>
-        <button class="btn btn-outline" onclick="openSignInModal()">Student Portal</button>
-      </div>
-
-      <div class="hero-bottom">
-        <div class="hero-stat">
-          <strong id="studentCounter">1,420+</strong>
-          <small>Active Students Enrolled</small>
+    <header>
+        <div class="logo">Munich Net Academy</div>
+        <div class="lang-container">
+            <button class="lang-btn" onclick="toggleLanguage()" id="langToggle1">Deutsch (DE)</button>
         </div>
-        <div class="hero-stat">
-          <strong>100%</strong>
-          <small>Practical Labs</small>
+    </header>
+
+    <div class="container">
+        <!-- Main Home View -->
+        <div id="homeView" class="card">
+            <h1 id="homeTitle">Welcome to Munich Net Academy</h1>
+            <p id="homeDesc">Your trusted platform for professional network engineering certifications and accredited training courses.</p>
+            <div style="margin-top: 30px;">
+                <span class="badge" id="homeBadge">Accredited Institution</span>
+            </div>
         </div>
-        <div class="hero-stat">
-          <strong>Munich</strong>
-          <small>Germany</small>
+
+        <!-- Secret Verification View (#verify-cert) -->
+        <div id="verifyView" class="card hidden">
+            <h1 id="verifyTitle">Official Certificate Verification</h1>
+            <p id="verifyDesc">This page officially verifies the academic credentials and professional course completion.</p>
+            
+            <div class="cert-details">
+                <h3 id="studentName">Muhamed Amr</h3>
+                <div class="cert-info">
+                    <div>
+                        <span id="labelId">Student ID / Reference</span>
+                        <strong>53440216</strong>
+                    </div>
+                    <div>
+                        <span id="labelStatus">Verification Status</span>
+                        <strong style="color: var(--success);" id="statusText">Verified & Authentic</strong>
+                    </div>
+                    <div>
+                        <span id="labelCcna">CCNA Course (60 Hours)</span>
+                        <strong>Excellent (Grade A)</strong>
+                    </div>
+                    <div>
+                        <span id="labelMcsa">MCSA Course (50 Hours)</span>
+                        <strong>Excellent (Grade A)</strong>
+                    </div>
+                </div>
+                <div class="badge" id="verifiedBadge">Official Munich Net Academy Graduate</div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="courses" id="courses">
-  <div class="container">
-    <div class="section-heading">
-      <div class="eyebrow">OUR TRAINING PROGRAMS</div>
-      <h2>Technical Excellence Starts Here.</h2>
-      <p>Structured professional tracks designed around core networking, administration, and infrastructure.</p>
     </div>
 
-    <div class="course-grid">
-      <article class="course-card">
-        <div class="course-icon">◈</div>
-        <h3>Cisco CCNA Complete Bootcamp</h3>
-        <p>Master routing, switching, IP addressing, OSPF, VLANs, and hands-on Packet Tracer simulations.</p>
-        <div class="course-footer"><span class="hours">60 HOURS</span><span>Professional Track</span></div>
-      </article>
+    <footer>
+        &copy; 2026 Munich Net Academy. All rights reserved.
+    </footer>
 
-      <article class="course-card">
-        <div class="course-icon">❖</div>
-        <h3>Microsoft MCSA System Administration</h3>
-        <p>Learn Windows Server management, Active Directory, group policies, DNS, and enterprise network services.</p>
-        <div class="course-footer"><span class="hours">50 HOURS</span><span>Systems Track</span></div>
-      </article>
+    <script>
+        const langData = {
+            en: {
+                langBtn: "Deutsch (DE)",
+                homeTitle: "Welcome to Munich Net Academy",
+                homeDesc: "Your trusted platform for professional network engineering certifications and accredited training courses.",
+                homeBadge: "Accredited Institution",
+                verifyTitle: "Official Certificate Verification",
+                verifyDesc: "This page officially verifies the academic credentials and professional course completion.",
+                labelId: "Student ID / Reference",
+                statusText: "Verified & Authentic",
+                labelCcna: "CCNA Course (60 Hours)",
+                labelMcsa: "MCSA Course (50 Hours)",
+                verifiedBadge: "Official Munich Net Academy Graduate"
+            },
+            de: {
+                langBtn: "English (EN)",
+                homeTitle: "Willkommen an der Munich Net Academy",
+                homeDesc: "Ihre vertrauenswürdige Plattform für professionelle Netzwerk-Zertifizierungen und akkreditierte Kurse.",
+                homeBadge: "Akkreditierte Institution",
+                verifyTitle: "Offizielle Zertifikatsprüfung",
+                verifyDesc: "Diese Seite verifiziert offiziell die akademischen Qualifikationen und den Kursabschluss.",
+                labelId: "Studenten-ID / Referenz",
+                statusText: "Verifiziert & Echtes Zertifikat",
+                labelCcna: "CCNA-Kurs (60 Stunden)",
+                labelMcsa: "MCSA-Kurs (50 Stunden)",
+                verifiedBadge: "Offizieller Absolvent der Munich Net Academy"
+            }
+        };
 
-      <article class="course-card">
-        <div class="course-icon">⌘</div>
-        <h3>CompTIA Network+ & Security Basics</h3>
-        <p>Understand network topologies, protocols, troubleshooting frameworks, and baseline infrastructure security.</p>
-        <div class="course-footer"><span class="hours">40 HOURS</span><span>Foundation Track</span></div>
-      </article>
+        let currentLang = 'en';
 
-      <article class="course-card">
-        <div class="course-icon">⌁</div>
-        <h3>Linux & Network Administration</h3>
-        <p>Command line mastery, virtualization with VMware, shell scripting, and remote server connectivity.</p>
-        <div class="course-footer"><span class="hours">35 HOURS</span><span>Admin Track</span></div>
-      </article>
-    </div>
-  </div>
-</section>
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            updateContent();
+        }
 
-<section id="about">
-  <div class="container about-grid">
-    <div class="about-text">
-      <div class="eyebrow">ABOUT MNA</div>
-      <h2>Engineering Knowledge.<br>Practical Skills. Real Progress.</h2>
-      <p>Munich Net Academy provides high-standard technical education. Every course includes completion assessments, verifiable credentials, and hands-on labs.</p>
-    </div>
-    <div class="about-box">
-      <h3>Accredited Training Standards</h3>
-      <div class="feature"><span>✦</span> Verified Digital Certificates with Unique ID</div>
-      <div class="feature"><span>✦</span> Enterprise Networking & Routing Labs</div>
-      <div class="feature"><span>✦</span> Professional System Administration</div>
-    </div>
-  </div>
-</section>
-</main>
+        function updateContent() {
+            const data = langData[currentLang];
+            document.getElementById('langToggle1').innerText = data.langBtn;
+            document.getElementById('homeTitle').innerText = data.homeTitle;
+            document.getElementById('homeDesc').innerText = data.homeDesc;
+            document.getElementById('homeBadge').innerText = data.homeBadge;
+            document.getElementById('verifyTitle').innerText = data.verifyTitle;
+            document.getElementById('verifyDesc').innerText = data.verifyDesc;
+            document.getElementById('labelId').innerText = data.labelId;
+            document.getElementById('statusText').innerText = data.statusText;
+            document.getElementById('labelCcna').innerText = data.labelCcna;
+            document.getElementById('labelMcsa').innerText = data.labelMcsa;
+            document.getElementById('verifiedBadge').innerText = data.verifiedBadge;
+        }
 
-<footer id="contact">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Munich Net Academy (MNA)</h4>
-        <p>A professional training hub for networking and systems engineering based in Munich, Germany.</p>
-      </div>
-      <div class="footer-col">
-        <h4>German Headquarters</h4>
-        <p>Leopoldstraße 45<br>80802 München, Germany<br>Phone: +49 89 45210980</p>
-      </div>
-      <div class="footer-col">
-        <h4>Support & Contact</h4>
-        <p>Email: support@munich-net-academy.de<br>Portal Hours: Mon - Fri (09:00 - 17:00 CET)</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Munich Net Academy · All Rights Reserved.</div>
-      <div>Networking · Infrastructure · Systems Engineering</div>
-    </div>
-  </div>
-</footer>
-</div>
+        function checkRoute() {
+            if (window.location.hash === '#verify-cert') {
+                document.getElementById('homeView').classList.add('hidden');
+                document.getElementById('verifyView').classList.remove('hidden');
+            } else {
+                document.getElementById('verifyView').classList.add('hidden');
+                document.getElementById('homeView').classList.remove('hidden');
+            }
+        }
 
-<!-- SECRET CERTIFICATE VERIFICATION VIEW -->
-<div id="verificationPage">
-  <div class="verify-container">
-    <div class="verify-header">
-      <div class="logo-icon verify-logo">M</div>
-      <h1>Munich Net Academy</h1>
-      <p>Official Certificate Verification · MNA · Germany</p>
-    </div>
-
-    <div class="verify-card">
-      <div class="verify-status">
-        <span class="status-label">AUTHENTICATION STATUS</span>
-        <div class="certified">CERTIFIED</div>
-      </div>
-
-      <div class="student-title">Student Credential Record</div>
-
-      <div class="details-grid" style="margin-bottom: 20px;">
-        <div class="detail-item full">
-          <small>STUDENT NAME</small>
-          <strong>محمد عمرو محمد عبدالله</strong>
-        </div>
-        <div class="detail-item">
-          <small>STUDENT ID</small>
-          <strong>42025117</strong>
-        </div>
-        <div class="detail-item">
-          <small>VERIFICATION DATE</small>
-          <strong>November 2026</strong>
-        </div>
-      </div>
-
-      <div class="student-title" style="margin-top: 25px;">Completed Tracks & Grades</div>
-
-      <!-- Course 1: CCNA -->
-      <div class="course-record-box">
-        <h4>
-          <span>Cisco CCNA Complete Bootcamp</span>
-          <span style="color:var(--green);">EXCELLENT</span>
-        </h4>
-        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--muted);">
-          <span>Duration: 60 Hours</span>
-          <span>Status: Passed & Verified</span>
-        </div>
-      </div>
-
-      <!-- Course 2: MCSA -->
-      <div class="course-record-box">
-        <h4>
-          <span>Microsoft MCSA System Administration</span>
-          <span style="color:var(--green);">EXCELLENT</span>
-        </h4>
-        <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--muted);">
-          <span>Duration: 50 Hours</span>
-          <span>Status: Passed & Verified</span>
-        </div>
-      </div>
-
-      <div class="official-badge-box">
-        ✓ هذه الشهادة مُعتمدة وموثقة رقمياً من أكاديمية Munich Net Academy في ألمانيا.
-      </div>
-
-      <div class="verify-actions">
-        <button class="back-btn" onclick="goHome()">← Back to Academy Home</button>
-      </div>
-    </div>
-
-    <div class="verify-footer" style="text-align:center; color:var(--muted); font-size:11px; margin-top:35px;">
-      Munich Net Academy · Official Digital Verification Portal
-    </div>
-  </div>
-</div>
-
-<!-- SIGN IN MODAL (Fakes login error) -->
-<div class="modal-overlay" id="signInModal">
-  <div class="modal">
-    <h3>Student Portal Sign In</h3>
-    <p>Enter your credentials to access your course dashboard.</p>
-    <div class="modal-error" id="loginError">خطأ: اسم المستخدم أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.</div>
-    <div class="form-group">
-      <label>Username / Email</label>
-      <input type="text" id="loginUser" placeholder="Enter username">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="loginPass" placeholder="Enter password">
-    </div>
-    <div style="display:flex; gap:10px; margin-top:20px;">
-      <button class="btn btn-primary" style="flex:1;" onclick="handleLogin()">Sign In</button>
-      <button class="btn btn-outline" onclick="closeModals()">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- SIGN UP MODAL (Closed cohort message) -->
-<div class="modal-overlay" id="signUpModal">
-  <div class="modal">
-    <div style="font-size:30px; margin-bottom:10px;">🔒</div>
-    <h3>Access Restricted</h3>
-    <p>Registration is currently closed for the new cohort. Access is restricted to pre-enrolled students only. Please check back later.</p>
-    <button class="btn btn-primary" style="width:100%;" onclick="closeModals()">Understood</button>
-  </div>
-</div>
-
-<script>
-// LIVE STUDENT COUNTER ANIMATION
-let count = 1428;
-setInterval(() => {
-  count += Math.floor(Math.random() * 3) - 1;
-  document.getElementById('studentCounter').innerText = count.toLocaleString() + '+';
-}, 4000);
-
-// MODALS CONTROL
-function openSignInModal() {
-  document.getElementById('loginError').style.display = 'none';
-  document.getElementById('loginUser').value = '';
-  document.getElementById('loginPass').value = '';
-  document.getElementById('signInModal').classList.add('active');
-}
-
-function openSignUpModal() {
-  document.getElementById('signUpModal').classList.add('active');
-}
-
-function closeModals() {
-  document.getElementById('signInModal').classList.remove('active');
-  document.getElementById('signUpModal').classList.remove('active');
-}
-
-function handleLogin() {
-  document.getElementById('loginError').style.display = 'block';
-}
-
-// ROUTING HASH FOR CERTIFICATE
-function updatePage() {
-  const isVerification = window.location.hash === '#verify-cert';
-  document.getElementById('homePage').style.display = isVerification ? 'none' : 'block';
-  document.getElementById('verificationPage').style.display = isVerification ? 'block' : 'none';
-  document.title = isVerification ? 'Certificate Verification | MNA' : 'Munich Net Academy | MNA';
-  window.scrollTo(0, 0);
-}
-
-function goHome() {
-  window.location.hash = '';
-  updatePage();
-}
-
-window.addEventListener('hashchange', updatePage);
-window.addEventListener('DOMContentLoaded', updatePage);
-</script>
-
+        window.addEventListener('hashchange', checkRoute);
+        window.addEventListener('load', checkRoute);
+    </script>
 </body>
 </html>
